@@ -1,0 +1,32 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variable files
+.env
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+
+# macOS system files
+.DS_Store
+
+# IDE/editor specific files
+.idea/
+.vscode/
+
+# Coverage directory
+coverage/
+
+# Build output (if applicable)
+dist/
+build/
+
+# npm cache
+.npm/
+
+# Optional files
+package-lock.json
