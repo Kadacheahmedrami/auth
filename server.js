@@ -10,8 +10,11 @@ const dbUri = process.env.DB_URI
 
 
 const homeRoute = require('./routes/home');
-const authRoute = require('./routes/auth');
+const authRoutes = require('./routes/auth');
 
+
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
 
 
 mongoose.connect(dbUri).then((result)=>app.listen(process.env.PORT)).catch((err)=>{
@@ -29,27 +32,31 @@ app.use(morgan('dev'));
 
 app.use('/',homeRoute)
 
-app.use('/auth',authRoute)
-
-app.get('/add-user',(req,res)=>{
-    const user = new User({
-        fullname :"rami",
-        gmail :'a_kadache@estin.dz',
 
 
-    })
-    user.save().then(
-        (result)=>{
-            res.send(result)
-        }
-    )
-    .catch((err)=>{
 
-        if(err){
-            console.log(err)
-        }
-    })
-})
+app.use('/auth', authRoutes); 
+
+
+// app.get('/add-user',(req,res)=>{
+//     const user = new User({
+//         fullname :"rami",
+//         gmail :'a_kadache@estin.dz',
+
+
+//     })
+//     user.save().then(
+//         (result)=>{
+//             res.send(result)
+//         }
+//     )
+//     .catch((err)=>{
+
+//         if(err){
+//             console.log(err)
+//         }
+//     })
+// })
 
 
 
