@@ -4,6 +4,8 @@ const app = express();
 const mongoose = require("mongoose")
 const User = require("./schemas/user")
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
+const rateLimit = require("express-rate-limit");
 
 
 const dbUri = process.env.DB_URI
@@ -12,9 +14,13 @@ const dbUri = process.env.DB_URI
 const homeRoute = require('./routes/home');
 const authRoutes = require('./routes/auth');
 
-
-app.use(express.json()); 
-app.use(express.urlencoded({ extended: true }));
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: "Too many requests from this IP, please try again later.",
+  });
+  
+  app.use(limiter);
 
 
 mongoose.connect(dbUri).then((result)=>app.listen(process.env.PORT)).catch((err)=>{
@@ -24,7 +30,9 @@ mongoose.connect(dbUri).then((result)=>app.listen(process.env.PORT)).catch((err)
     }
 })
 
-
+app.use(cookieParser());
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan('dev'));
 
