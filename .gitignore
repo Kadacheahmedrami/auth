@@ -1,6 +1,11 @@
 # Node.js dependencies
 node_modules/
 
+client/node_modules/
+
+
+
+
 # Environment variable files
 .env
 
