@@ -6,6 +6,9 @@ const User = require("./schemas/user")
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const rateLimit = require("express-rate-limit");
+const cors = require('cors');
+
+
 
 
 const dbUri = process.env.DB_URI
@@ -23,6 +26,8 @@ const limiter = rateLimit({
   app.use(limiter);
 
 
+
+  
 mongoose.connect(dbUri).then((result)=>app.listen(process.env.PORT)).catch((err)=>{
 
     if(err){
@@ -34,7 +39,15 @@ app.use(cookieParser());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({
+    origin: 'http://localhost:3000', // Frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true // Include credentials like cookies, if needed
+}));
+
+
 app.use(morgan('dev'));
+
 
 
 

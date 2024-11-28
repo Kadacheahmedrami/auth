@@ -43,6 +43,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+    console.log(req.body);
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -76,6 +77,7 @@ router.post("/login", async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    console.log("Logged in successfully")
     res.json({ message: "Logged in successfully" });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
