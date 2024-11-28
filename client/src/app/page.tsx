@@ -1,22 +1,75 @@
 'use client';
 import { useState } from 'react';
 
+
+
+
+
+
 const AuthPage = () => {
+
+
+
+
+
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [name, setname] = useState('');
   const [password, setPassword] = useState('');
 
+  async function login(email: string, password: string) {
+    try {
+      const response = await fetch('http://localhost:3001/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email,password  }),
+      
+      });
+  
+      const data = await response.json();
+      console.log('Success:', data.message);
+
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  }
+  
+
+  async function signup(username : string,email: string, password: string) {
+    try {
+      const response = await fetch('http://localhost:3001/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({username,email,password}),
+        
+      });
+  
+      const data = await response.json();
+      console.log('Success:', data.message);
+
+    } catch (error) {
+      console.error('Network error:', error);
+    }
+  }
+  
+
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isLogin) {
-      console.log('Logging in with', email, password);
+   
+      login(email, password);
     } else {
-      console.log('Signing up with', email, password);
+      signup(name,email,password);
     }
   };
 
@@ -80,3 +133,7 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+function setResponseMessage(message: any) {
+  throw new Error('Function not implemented.');
+}
+

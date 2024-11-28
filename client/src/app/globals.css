@@ -66,8 +66,10 @@ body {
   font-size: 16px;
   color: #fff;
   padding: 20px 45px 20px 20px;
+  transition: all 0.1s ease-in;
 }
 .input-box input::placeholder {
+ 
   color: #fff;
 }
 .input-box i {
@@ -106,6 +108,7 @@ body {
   font-size: 16px;
   color: #333;
   font-weight: 600;
+  transition: all 0.3s ease-in;
 }
 .register-link {
   font-size: 14.5px;
@@ -126,3 +129,35 @@ a{
 }
 
 
+
+.input-box input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.input-box i:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+.btn:hover {
+  background: #f0f0f0;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+a:hover {
+  color: #ddd;
+  text-decoration: underline;
+}
