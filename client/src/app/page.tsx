@@ -1,17 +1,19 @@
 
-import { useState } from 'react';
-
-
-
-
-
 
 const Homepage = () => {
-  return <h1 className='text-white text-[120px]'>HOME PAGE</h1>
-
+  return (
+ <>  {/* Main Content */}
+      <main className="flex flex-col items-center justify-center h-[calc(100vh-64px)]">
+        <h1 className="text-[120px] font-extrabold text-center">HOME PAGE</h1>
+        <div className="mt-8">
+      
+        </div>
+      </main>
+      
+      </>
+    
   
-
+  );
 };
 
 export default Homepage;
-
